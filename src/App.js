@@ -5,6 +5,10 @@ import Bookshelf from "./Bookshelf"
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 
+/* TODO
+  - back button on search page does not refresh results, but manually typing in bar does
+  - add ability to delete books
+*/
 
 
 class BooksApp extends React.Component {
@@ -39,7 +43,7 @@ class BooksApp extends React.Component {
       <div className="app">
         <Route path="/search" render={()=>{
           return (
-            <SearchBooks />
+            <SearchBooks onChangeShelf={this.changeShelf}/>
           )
         }}/>
         <Route exact path="/" render={()=>{
