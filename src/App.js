@@ -16,6 +16,17 @@ class BooksApp extends React.Component {
     books: []
   }
 
+  getShelfMap = () => {
+    const shelfMap = this.state.books.reduce( (map, book) => {
+      map[book.id] = book.shelf
+      return map
+    }, {} );
+    const handler = {
+      get: (target, name) => name in target ? target[name] : "none"
+    }
+    return new Proxy(shelfMap, handler)
+  }
+
   changeShelf = (book, shelf) => {
     BooksAPI.update(book, shelf);
     const books = this.state.books;
@@ -47,7 +58,7 @@ class BooksApp extends React.Component {
           return (
             <SearchBooks
               onChangeShelf={this.changeShelf}
-              books={this.state.books}
+              getShelfMap={this.getShelfMap}
             />
           )
         }}/>

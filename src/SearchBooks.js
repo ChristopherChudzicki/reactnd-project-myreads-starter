@@ -7,7 +7,8 @@ import PropTypes from 'prop-types'
 class SearchBooks extends Component {
 
   static propTypes = {
-    onChangeShelf: PropTypes.func.isRequired
+    onChangeShelf: PropTypes.func.isRequired,
+    getShelfMap: PropTypes.func.isRequired
   }
 
   state = {
@@ -18,13 +19,13 @@ class SearchBooks extends Component {
   ]
 
   searchBooks = (term) => {
-    // TODO handle spaces better. E.g., "android art" should probably match android and art.
     const maxResults = 20;
     term = term.toLowerCase();
     if (this.searchTerms.includes(term)){
+      const shelfMap = this.props.getShelfMap();
       BooksAPI.search(term, maxResults).then( results => {
         this.setState({searchResults: results.map(r => {
-          r.shelf = 'none'
+          r.shelf = shelfMap[r.id]
           return r
         })})
       } )
