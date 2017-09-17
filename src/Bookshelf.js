@@ -11,7 +11,7 @@ function Bookshelf({shelf, shelfTitle, books, onChangeShelf}){
         <ol className="books-grid">
           {books.map( (book, i) => (
             <li key={i}>
-              <Book book={book} onChangeShelf = {onChangeShelf}/>
+              <Book book={book} onChangeShelf={onChangeShelf}/>
             </li>
           ) )}
         </ol>
@@ -23,7 +23,8 @@ function Bookshelf({shelf, shelfTitle, books, onChangeShelf}){
 Bookshelf.propTypes = {
   shelf: PropTypes.string.isRequired,
   shelfTitle: PropTypes.string.isRequired,
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  onChangeShelf: PropTypes.func.isRequired
 }
 
 export default Bookshelf
