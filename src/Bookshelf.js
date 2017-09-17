@@ -2,7 +2,7 @@ import React from 'react'
 import Book from "./Book"
 import PropTypes from 'prop-types'
 
-function Bookshelf({shelf, shelfTitle, books}){
+function Bookshelf({shelf, shelfTitle, books, onChangeShelf}){
   books = books.filter( book => book.shelf===shelf )
   return (
     <div className="bookshelf">
@@ -11,7 +11,7 @@ function Bookshelf({shelf, shelfTitle, books}){
         <ol className="books-grid">
           {books.map( (book, i) => (
             <li key={i}>
-              <Book book={book}/>
+              <Book book={book} onChangeShelf = {onChangeShelf}/>
             </li>
           ) )}
         </ol>
