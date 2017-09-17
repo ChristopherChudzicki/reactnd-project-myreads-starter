@@ -2,7 +2,8 @@ import React from 'react'
 import Book from "./Book"
 import PropTypes from 'prop-types'
 
-function Bookshelf({shelfTitle, books}){
+function Bookshelf({shelf, shelfTitle, books}){
+  books = books.filter( book => book.shelf===shelf )
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{shelfTitle}</h2>
@@ -20,6 +21,7 @@ function Bookshelf({shelfTitle, books}){
 }
 
 Bookshelf.propTypes = {
+  shelf: PropTypes.string.isRequired,
   shelfTitle: PropTypes.string.isRequired,
   books: PropTypes.array.isRequired
 }
