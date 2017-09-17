@@ -1,8 +1,8 @@
 import React from 'react'
 import ShelfChanger from './ShelfChanger'
+import PropTypes from 'prop-types'
 
-function Book(props){
-  const book = props.bookData;
+function Book({book}){
   return (
     <div className="book">
       <div className="book-top">
@@ -14,6 +14,9 @@ function Book(props){
       <div className="book-authors">{book.authors[0]}</div>
     </div>
   )
+}
+Book.propTypes = {
+  book: PropTypes.object.isRequired
 }
 
 export default Book
