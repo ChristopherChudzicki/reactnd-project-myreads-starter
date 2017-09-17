@@ -10,8 +10,7 @@ function Book({book, onChangeShelf}){
         <ShelfChanger book={book} onChangeShelf={onChangeShelf} />
       </div>
       <div className="book-title">{book.title}</div>
-      {/*  TODO: create an authors component that nicely lists all the authors */}
-      <div className="book-authors">{book.authors}</div>
+      <div className="book-authors">{book.authors.join(", ")}</div>
     </div>
   )
 }
