@@ -14,7 +14,14 @@ class BooksApp extends React.Component {
 
   changeShelf = (book, shelf) => {
     BooksAPI.update(book, shelf);
-    this.loadBooks();
+    this.setState({
+      books:this.state.books.map(b => {
+        if (b===book){
+          b.shelf = shelf;
+        }
+        return b
+      } )
+    })
   }
 
   loadBooks = () => {
@@ -46,19 +53,19 @@ class BooksApp extends React.Component {
                   shelf="currentlyReading"
                   shelfTitle="Currently Reading"
                   books={this.state.books}
-                  onChangeShelf = {this.changeShelf}
+                  onChangeShelf={this.changeShelf}
                 />
                 <Bookshelf
                   shelf="wantToRead"
                   shelfTitle="Want to Read"
                   books={this.state.books}
-                  onChangeShelf = {this.changeShelf}
+                  onChangeShelf={this.changeShelf}
                 />
                 <Bookshelf
                   shelf="read"
                   shelfTitle="Read"
                   books={this.state.books}
-                  onChangeShelf = {this.changeShelf}
+                  onChangeShelf={this.changeShelf}
                 />
               </div>
               <div className="open-search">
